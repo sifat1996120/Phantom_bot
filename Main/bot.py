@@ -788,7 +788,7 @@ async def handle_settings(update : Update, content : ContextTypes.DEFAULT_TYPE) 
         await update.message.reply_text("Here is your settings:")
         user_name = f"{update.effective_user.first_name or "X"} {update.effective_user.last_name or "X"}".strip()
         settings = get_settings(update.effective_user.id, user_name)
-        data = f"Name: {settings[1]}\nActive AI Engine: {settings[2]}\nThinking Budget: {settings[3]}\nTemperature: {settings[4]}\nStreaming: {settings[5]}"
+        data = f"Name: {settings[1]}\nActive AI Engine: {settings[2]}\nThinking Budget: {settings[3]}\nTemperature: {settings[4]}\nStreaming: {settings[5]}\nPersona:{settings[6]}"
         await update.message.reply_text(add_escape_character(data), parse_mode="MarkdownV2")
     except Exception as e:
         await send_to_channel(update, content, channel_id, f"Error in handle_settings function \n\nError Code -{e}")
