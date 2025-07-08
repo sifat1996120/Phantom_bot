@@ -879,6 +879,7 @@ def main():
         app.add_handler(CommandHandler("admin", admin_handler))
         app.add_handler(CommandHandler("persona", handle_persona))
         app.add_handler(CommandHandler("add_persona", add_persona))
+        app.add_handler(CommandHandler("settings", handle_settings))
         app.add_handler(CommandHandler("delete_memory", delete_memory))
         app.add_handler(MessageHandler(filters.Sticker.ALL, handle_sticker))
         app.add_handler(MessageHandler(filters.PHOTO & ~filters.ChatType.CHANNEL, handle_image))
