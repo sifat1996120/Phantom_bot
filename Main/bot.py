@@ -525,7 +525,7 @@ async def start(update : Update, content : ContextTypes.DEFAULT_TYPE) -> None:
             await update.message.reply_text("Hi there, I am your personal assistant. If you need any help feel free to ask me.", reply_markup=reply_markup)
             return
         if user_id not in users:
-            await update.message.reply_text("You are not registerd yet.")
+            await update.message.reply_text("You are not registerd yet.", reply_markup=reply_markup)
             all_users = load_all_user()
     except Exception as e:
         print(f"Error in start function. \n Error Code - {e}")
