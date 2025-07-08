@@ -1,0 +1,219 @@
+{
+  "days": {
+    "Saturday": {
+      "1st": null,
+      "2nd": {
+        "subject": "Math 1113",
+        "teacher": "MHU",
+        "room": "104"
+      },
+      "3rd": {
+        "subject": "EEE 1151",
+        "teacher": "MMI",
+        "room": "104"
+      },
+      "4th": {
+        "subject": "HUM 1114 (English Lab)",
+        "teacher": "SA",
+        "room": "lab",
+        "roll": "ALL"
+      },
+      "5th": {
+        "subject": "HUM 1114 (English Lab)",
+        "teacher": "SA",
+        "room": "lab",
+        "roll": "ALL"
+      },
+      "6th": {
+        "subject": "HUM 1114 (English Lab)",
+        "teacher": "SA",
+        "room": "lab",
+        "roll": "ALL"
+      },
+      "Break": "1:20-2:30",
+      "7th": {
+        "subject": "CSE 1100 (HW Lab)",
+        "teacher": "NOS",
+        "room": "-",
+        "roll": "ALL"
+      },
+      "8th": {
+        "subject": "CSE 1100 (HW Lab)",
+        "teacher": "NOS",
+        "room": "-",
+        "roll": "ALL"
+      },
+      "9th": {
+        "subject": "CSE 1100 (HW Lab)",
+        "teacher": "NOS",
+        "room": "-",
+        "roll": "ALL"
+      }
+    },
+    "Sunday": {
+      "1st": null,
+      "2nd": {
+        "subject": "Math 1113",
+        "teacher": "MSR",
+        "room": "201"
+      },
+      "3rd": null,
+      "4th": {
+        "subject": "CSE 1101",
+        "teacher": "SUZ/NIM",
+        "room": "201"
+      },
+      "5th": {
+        "subject": "EEE 1151",
+        "teacher": "MMI",
+        "room": "201"
+      },
+      "6th": null,
+      "Break": "1:20-2:30",
+      "7th": {
+        "subject": "CHEM 1114 Lab",
+        "teacher": "MAA/JH",
+        "room": null,
+        "roll": "lab"
+      },
+      "8th": {
+        "subject": "CHEM 1114 Lab",
+        "teacher": "MAA/JH",
+        "room": null,
+        "roll": "lab"
+      },
+      "9th": {
+        "subject": "CHEM 1114 Lab",
+        "teacher": "MAA/JH",
+        "room": null,
+        "roll": "lab"
+      }
+    },
+    "Monday": {
+      "1st": {
+        "subject": "HUM 1113",
+        "teacher": "MFS",
+        "room": "202"
+      },
+      "2nd": {
+        "subject": "CHEM 1113",
+        "teacher": "JH",
+        "room": "202"
+      },
+      "3rd": {
+        "subject": "Math 1113",
+        "teacher": "MHU",
+        "room": "202"
+      },
+      "4th": null,
+      "5th": null,
+      "6th": null,
+      "Break": "1:20-2:30",
+      "7th": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      },
+      "8th": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      },
+      "9th": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      }
+    },
+    "Tuesday": {
+      "1st": null,
+      "2nd": null,
+      "3rd": null,
+      "4th": {
+        "subject": "HUM 1113",
+        "teacher": "SAS",
+        "room": "104"
+      },
+      "5th": {
+        "subject": "EEE 1151",
+        "teacher": "MMI",
+        "room": "104"
+      },
+      "6th": {
+        "subject": "CHEM 1113",
+        "teacher": "JH",
+        "room": "104"
+      },
+      "Break": null,
+      "7th": null,
+      "8th": null,
+      "9th": null
+    },
+    "Wednesday": {
+      "1st": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      },
+      "2nd": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      },
+      "3rd": {
+        "subject": "CSE 1102 (SW Lab)",
+        "teacher": "SUZ/NIM",
+        "room": "lab",
+        "roll": "-"
+      },
+      "4th": {
+        "subject": "HUM 1113",
+        "teacher": "SAS",
+        "room": "203"
+      },
+      "5th": {
+        "subject": "CHEM 1113",
+        "teacher": "MAA",
+        "room": "203"
+      },
+      "6th": {
+        "subject": "EEE 1152 (Measurement Lab)",
+        "teacher": "MNA",
+        "room": "lab",
+        "roll": "-"
+      },
+      "Break": "1:20-2:30",
+      "7th": {
+        "subject": "EEE 1152 (Measurement Lab)",
+        "teacher": "MNA",
+        "room": "lab",
+        "roll": "-"
+      },
+      "8th": {
+        "subject": "EEE 1152 (Measurement Lab)",
+        "teacher": "MNA",
+        "room": "lab",
+        "roll": "-"
+      },
+      "9th": null
+    },
+    "Thursday": {}
+  },
+  "time_slots": {
+    "1st": "8:00-8:50",
+    "2nd": "8:50-9:40",
+    "3rd": "9:40-10:30",
+    "4th": "10:50-11:40",
+    "5th": "11:40-12:30",
+    "6th": "12:30-1:20",
+    "Break": "1:20-2:30",
+    "7th": "2:30-3:20",
+    "8th": "3:20-4:10",
+    "9th": "4:10-5:00"
+  }
+}

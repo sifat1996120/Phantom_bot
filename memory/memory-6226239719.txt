@@ -1,13 +1,10 @@
-- Name: Sifat
-- Age: 26
-- Profession: Student
-- Country: Bangladesh
-- University: RUET
-- Subject: CSE
-- Interest:  Fucking Girl
-- Chemistry score: 18/20
-- EEE score: Bad
-- Working with: Gemini API
-- Learning: Python for Telegram bot
-- Birthday: July 1st
-- Likes: Fighting (verbal sparring, wit, and debate)
+*   **Name:** Sifat
+*   **Age:** 26 years old
+*   **Location:** Bangladesh
+*   **Occupation:** Student at RUET (Rajshahi University of Engineering & Technology), studying CSE (Computer Science and Engineering).
+*   **Programming Languages:** Loves coding in C++, C, and Python.
+*   **Aspiration:** Wants to be a hacker.
+*   **Personal Interest:** States "I love fucking girl".*   Is actively seeking information on how to become a hacker.
+*   Expressed "Group" without further context.
+*   Engaged in repeated "hi" greetings.
+*   Directed "fuck_you'" and "i just wanna fuck you" towards the AI.

@@ -1,0 +1,36 @@
+[project]
+name = "Nyx_bot"
+version = "0.0.0"
+description = "A telegram bot project for RUET CSE SECTION C"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Shadow_mist", email="shadow_mist0@proton.me"},
+    { name = "Bitto Shaha" , email="example@gmail.com"}
+]
+maintainers = [
+    {name = "shadow_mist" , email = "shadow_mist0@proton.me"},
+    {name = "RUET_CSE_SEC_C" , email = "ruetcse24@gmail.com"}
+]
+keywords = ["Telegram", "bot", "automation", "ai", "ruet", "cse", "section-c"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Linux",
+]
+dependencies = [
+    "flask>=3.1.1",
+    "requests>=2.31.0",
+    "python-telegram-bot>=20.8",
+    "google-genai>=1.24.0",
+    "telegram>=0.0.1",
+    "pyrebase>=3.0.27",
+]
+[project.urls]
+"Repository" = "https://github.com/sifat1996120/cse_sec_c"
+"Homepage" = ""
+"Monitor Page" = ""
+
+[project.scripts]
+bot-start = "main.bot:main"

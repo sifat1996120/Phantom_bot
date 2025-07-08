@@ -1,0 +1,6 @@
+/src - To view all cse resources
+/remind - To do some good work✨
+/routine - To see the latest routine
+/ct - To show CT routine of this week
+/web - To get in touch with cse 24
+/help - To get help about the commands

@@ -1,0 +1,7 @@
+*   **Name:** Sifat
+*   **Age:** 26 years old
+*   **Location:** Bangladesh
+*   **Occupation:** Student at RUET (Rajshahi University of Engineering & Technology), studying Computer Science and Engineering (CSE).
+*   **Skills/Interests:** Loves coding in C++, C, and Python.
+*   **Aspirations:** Wants to be a hacker (the specific type of hacker is not yet clarified).
+*   **Personal Interests:** "Loves fucking girls."

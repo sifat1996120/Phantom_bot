@@ -1,0 +1,6 @@
+Some of the function that are only allowed for admin given below:
+
+1. For getting all users memory use /memory_all
+2. For getting all users settings use /settings_all
+3. For sending message to all user use /send_message_to_all
+4. 
