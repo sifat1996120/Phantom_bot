@@ -29,8 +29,7 @@ dependencies = [
 ]
 [project.urls]
 "Repository" = "https://github.com/sifat1996120/cse_sec_c"
-"Homepage" = ""
-"Monitor Page" = ""
+"Homepage" = "https://github.com/sifat1996120/phantom_bot.git"
 
 [project.scripts]
 bot-start = "main.bot:main"
