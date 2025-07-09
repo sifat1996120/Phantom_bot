@@ -346,7 +346,7 @@ async def handle_ct(update:Update, content:ContextTypes.DEFAULT_TYPE) -> None:
         await update.message.reply_text("📭 No CTs scheduled yet.")
         return
     else:
-        now = datetime.now()
+        now = datetime.now().date()
         upcoming = []
 
         for ct_id, ct in ct_data.items():
