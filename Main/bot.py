@@ -508,7 +508,7 @@ async def start(update : Update, content : ContextTypes.DEFAULT_TYPE) -> None:
         ["Routine", "CT"],
         ["Settings", "Download"]
     ]
-    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
+    reply_markup = ReplyKeyboardMarkup(keyboard, resize_keyboard=True, one_time_keyboard=False, selective=False, is_persistent=True)
     try:
         user_id = update.effective_user.id
         paths = [
