@@ -16,8 +16,7 @@ maintainers = [
 keywords = ["Telegram", "bot", "automation", "ai", "ruet", "cse", "section-c"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: Linux",
+    "Operating System :: Linux"
 ]
 dependencies = [
     "flask>=3.1.1",
@@ -27,9 +26,13 @@ dependencies = [
     "telegram>=0.0.1",
     "pyrebase>=3.0.27",
 ]
+
 [project.urls]
-"Repository" = "https://github.com/sifat1996120/cse_sec_c"
-"Homepage" = "https://github.com/sifat1996120/phantom_bot"
+Repository = "https://github.com/sifat1996120/cse_sec_c"
+Homepage = "https://github.com/sifat1996120/phantom_bot"
 
 [project.scripts]
-bot-start = "main.bot:main"
+bot-start = "Main.bot:main"
+
+[tool.setuptools]
+packages = ["Main", "API", "info", "memory", "persona", "routine", "settings", "Conversation"]
