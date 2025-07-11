@@ -266,6 +266,15 @@ def save_conversation(user_message : str , gemini_response:str , user_id:int) ->
         print(f"Error in saving conversation. \n\n Error Code - {e}")
 
 
+
+#function to save group conversation 
+def save_group_conversation(update, user_message : str, gemini_response:str , user_id: int) -> None:
+    try:
+        with open("Conversation/conversation-group.txt", "a") as file:
+            f.write(f"\n{update.effective_user.first_name or "X"} {update.effective_user.last_name or "X"}: {user_message}\nYou: {gemini_response}\n")
+    except Exception as e:
+        print(f"Error in saving conversation. \n\n Error Code - {e}")
+
 #function to check if the code block is left opened in the chunk or not
 def is_code_block_open(data):
     return data.count("```")%2 == 1
@@ -458,6 +467,8 @@ async def send_message(update : Update, content : ContextTypes.DEFAULT_TYPE, res
                         await message_object.edit_text(buffer+"\n")
             if update.message.chat.type == "private":
                 save_conversation(user_message, sent_message , update.effective_user.id)
+            elif update.message.chat.type == "group":
+                save_group_conversation(update, user_message, sent_message , update.effective_user.id)
         #if streaming is off
         else:
             sent_message = response.text
@@ -502,6 +513,8 @@ async def send_message(update : Update, content : ContextTypes.DEFAULT_TYPE, res
                             await update.message.reply_text(sent_message)
             if update.message.chat.type == "private":
                 save_conversation(user_message, sent_message, update.effective_user.id)
+            elif update.message.chat.type == "group":
+                save_group_conversation(update, user_message, sent_message , update.effective_user.id)
     except Exception as e:
         print(f"Error in send_message function Error Code - {e}")
         await send_to_channel(update, content, channel_id, f"Error in send_message function \n\nError Code -{e}")
