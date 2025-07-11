@@ -243,7 +243,7 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 f.seek(0)
                 if(f.read().count("You: ")>20):
                     asyncio.create_task(background_memory_creation(update, content, user_id))
-        if update.message.chat.type != "group":
+        if update.message.chat.type == "group":
             data += "***CONVERSATION HISTORY***\n\n"
             with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
                 try:
