@@ -242,22 +242,22 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 f.seek(0)
                 if(f.read().count("You: ")>20):
                     asyncio.create_task(background_memory_creation(update, content, user_id))
-        if update.message.chat.type == "group":
+        if update.message.chat.type != "private":
             data = "***RULES***\n"
             with open("info/group-rules.txt", "a+" , encoding="utf-8") as f:
                 f.seek(0)
                 data += f.read()
                 data += "\n***END OF RULES***\n\n\n"
-                data += "***MEMORY***\n"
+            data += "***MEMORY***\n"
             with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
                 data += f.read()
                 data += "\n***END OF MEMORY***\n\n\n"
-                data += "***CONVERSATION HISTORY***\n\n"
+            data += "***CONVERSATION HISTORY***\n\n"
             with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
                 file.seek(0)
                 data += file.read()
-                data += "\nUser: " + user_message
+            data += "\nUser: " + user_message
         return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
@@ -280,7 +280,7 @@ def save_group_conversation(update, user_message : str, gemini_response:str , us
         with open("Conversation/conversation-group.txt", "a") as f:
             f.write(f"\n{update.effective_user.first_name or "X"} {update.effective_user.last_name or "X"}: {user_message}\nYou: {gemini_response}\n")
     except Exception as e:
-        print(f"Error in saving conversation. \n\n Error Code - {e}")
+        print(f"Error in saving group conversation. \n\n Error Code - {e}")
 
 #function to check if the code block is left opened in the chunk or not
 def is_code_block_open(data):
