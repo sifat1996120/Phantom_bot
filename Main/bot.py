@@ -474,7 +474,7 @@ async def send_message(update : Update, content : ContextTypes.DEFAULT_TYPE, res
                         await message_object.edit_text(buffer+"\n")
             if update.message.chat.type == "private":
                 save_conversation(user_message, sent_message , update.effective_user.id)
-            elif update.message.chat.type == "group":
+            elif update.message.chat.type != "private":
                 save_group_conversation(update, user_message, sent_message , update.effective_user.id)
         #if streaming is off
         else:
@@ -520,7 +520,7 @@ async def send_message(update : Update, content : ContextTypes.DEFAULT_TYPE, res
                             await update.message.reply_text(sent_message)
             if update.message.chat.type == "private":
                 save_conversation(user_message, sent_message, update.effective_user.id)
-            elif update.message.chat.type == "group":
+            elif update.message.chat.type != "private":
                 save_group_conversation(update, user_message, sent_message , update.effective_user.id)
     except Exception as e:
         print(f"Error in send_message function Error Code - {e}")
