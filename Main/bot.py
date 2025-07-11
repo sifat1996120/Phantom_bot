@@ -224,17 +224,16 @@ async def create_memory(api, user_id):
 #create the conversation history as prompt
 async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_message, user_id):
     try:
-        data = "***RULES***\n"
-        with open("info/rules.txt", "r" , encoding="utf-8") as f:
-            data += f.read()
-            data += "\n***END OF RULES***\n\n\n"
-        if update.message.chat.type == "peivate":
+        if update.message.chat.type == "private":
+            data = "***RULES***\n"
+            with open("info/rules.txt", "r" , encoding="utf-8") as f:
+                data += f.read()
+                data += "\n***END OF RULES***\n\n\n"
             data += "***MEMORY***\n"
             with open(f"memory/memory-{user_id}.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
                 data += f.read()
                 data += "\n***END OF MEMORY***\n\n\n"
-        if update.message.chat.type == "private":
             with open(f"Conversation/conversation-{user_id}.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
                 data += "***CONVERSATION HISTORY***\n\n"
@@ -244,6 +243,21 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 if(f.read().count("You: ")>20):
                     asyncio.create_task(background_memory_creation(update, content, user_id))
         if update.message.chat.type == "group":
+            data = "***RULES***\n"
+            try:
+                with open("info/group-rules.txt", "r" , encoding="utf-8") as f:
+                    data += f.read()
+                    data += "\n***END OF RULES***\n\n\n"
+                data += "***MEMORY***\n"
+            except:
+                data += ""
+            try:
+                with open(f"memory/memory-{user_id}.txt", "a+", encoding="utf-8") as f:
+                    f.seek(0)
+                    data += f.read()
+                data += "\n***END OF MEMORY***\n\n\n"
+            except:
+                data += ""
             data += "***CONVERSATION HISTORY***\n\n"
             with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
                 try:
