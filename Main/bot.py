@@ -582,7 +582,6 @@ async def echo(update : Update, content : ContextTypes.DEFAULT_TYPE) -> None:
             for i in range(len(gemini_api_keys)):
                 try:
                     if(settings[5]):
-                        await send_to_channel(update, content, channel_id, prompt)
                         response = gemini_stream(prompt, gemini_api_keys[i],settings)
                         next(response).text
                         break
