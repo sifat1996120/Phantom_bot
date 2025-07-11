@@ -245,7 +245,8 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
         if update.message.chat.type == "group":
             data = "***RULES***\n"
             try:
-                with open("info/group-rules.txt", "r" , encoding="utf-8") as f:
+                with open("info/group-rules.txt", "a+" , encoding="utf-8") as f:
+                    f.seek(0)
                     data += f.read()
                     data += "\n***END OF RULES***\n\n\n"
                 data += "***MEMORY***\n"
