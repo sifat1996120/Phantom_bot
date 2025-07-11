@@ -244,28 +244,20 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                     asyncio.create_task(background_memory_creation(update, content, user_id))
         if update.message.chat.type == "group":
             data = "***RULES***\n"
-            try:
-                with open("info/group-rules.txt", "a+" , encoding="utf-8") as f:
-                    f.seek(0)
-                    data += f.read()
-                    data += "\n***END OF RULES***\n\n\n"
+            with open("info/group-rules.txt", "a+" , encoding="utf-8") as f:
+                f.seek(0)
+                data += f.read()
+                data += "\n***END OF RULES***\n\n\n"
                 data += "***MEMORY***\n"
-            except:
-                data += ""
-            try:
-                with open(f"memory/memory-{user_id}.txt", "a+", encoding="utf-8") as f:
-                    f.seek(0)
-                    data += f.read()
+            with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
+                f.seek(0)
+                data += f.read()
                 data += "\n***END OF MEMORY***\n\n\n"
-            except:
-                data += ""
-            data += "***CONVERSATION HISTORY***\n\n"
+                data += "***CONVERSATION HISTORY***\n\n"
             with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
-                try:
-                    data += file.read()
-                except:
-                    data += "..."
-            data += "\nUser: " + user_message
+                file.seek(0)
+                data += file.read()
+                data += "\nUser: " + user_message
         return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
@@ -285,7 +277,7 @@ def save_conversation(user_message : str , gemini_response:str , user_id:int) ->
 #function to save group conversation 
 def save_group_conversation(update, user_message : str, gemini_response:str , user_id: int) -> None:
     try:
-        with open("Conversation/conversation-group.txt", "a") as file:
+        with open("Conversation/conversation-group.txt", "a") as f:
             f.write(f"\n{update.effective_user.first_name or "X"} {update.effective_user.last_name or "X"}: {user_message}\nYou: {gemini_response}\n")
     except Exception as e:
         print(f"Error in saving conversation. \n\n Error Code - {e}")
