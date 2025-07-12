@@ -175,7 +175,17 @@ def gemini_non_stream(user_message, api, settings):
 #A function to delete n times convo from conversation history
 def delete_n_convo(user_id, n):
     try:
-        with open(f"Conversation/conversation-{user_id}.txt", "r+", encoding="utf-8") as f:
+        if user_id == 100:
+            with open("Conversation/conversation-group.txt", "r+") as file:
+                data = f.read()
+                data = data.split("You: ")
+                if len(data) >= n+1:
+                    data = data[n:]
+                    f.seek(0)
+                    f.truncate(0)
+                    f.write("You: ".join(data))
+            return
+         with open(f"Conversation/conversation-{user_id}.txt", "r+", encoding="utf-8") as f:
             data = f.read()
             data = data.split("You: ")
             if len(data) >= n+1:
@@ -248,7 +258,7 @@ async def create_group_memory(api, user_id):
         )
         with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
             f.write(response.text)
-        delete_n_convo(user_id, 100)
+        delete_n_convo(100, 100)
     except Exception as e:
         print(f"Failed to create memory\n Error code-{e}")
 
@@ -276,6 +286,7 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 f.seek(0)
                 if(f.read().count("You: ")>20):
                     asyncio.create_task(background_memory_creation(update, content, user_id))
+            return data
         if update.message.chat.type != "private":
             data = "***RULES***\n"
             with open("info/group-rules.txt", "r" , encoding="utf-8") as f:
@@ -288,18 +299,18 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
             data += "***MEMORY***\n"
             with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
-                data += f.read()
+                data += f.read() if f.read() else "none"
                 data += "\n***END OF MEMORY***\n\n\n"
             with open(f"Conversation/conversation-group.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
                 data += "***CONVERSATION HISTORY***\n\n"
-                data += f.read()
+                data += f.read() if f.read() else "none"
                 data += "\nUser: " + user_message
                 f.seek(0)
-                await send_to_channel(update, content, channel_id, data)
+                print(data)
               #  if(f.read().count("You: ")>200):
                    # asyncio.create_task(background_group_memory_creation(update, content, user_id))            
-        return data
+            return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
         await send_to_channel(update, content, channel_id, f"Error in create_prompt function. \n\n Error Code - {e}")
