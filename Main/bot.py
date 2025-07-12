@@ -295,8 +295,8 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 data += "***CONVERSATION HISTORY***\n\n"
                 data += f.read()
                 data += "\nUser: " + user_message
-                print(data)
                 f.seek(0)
+                await send_to_channel(update, content, channel_id, data)
               #  if(f.read().count("You: ")>200):
                    # asyncio.create_task(background_group_memory_creation(update, content, user_id))            
         return data
@@ -620,6 +620,7 @@ async def echo(update : Update, content : ContextTypes.DEFAULT_TYPE) -> None:
             if update.message.chat.type != "private":
                 settings[6] = 4
             prompt = await create_prompt(update, content, user_message, user_id)
+            await send_to_channel(update, content, channel_id, prompt)
             for i in range(len(gemini_api_keys)):
                 try:
                     if(settings[5]):
