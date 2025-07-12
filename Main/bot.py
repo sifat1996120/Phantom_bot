@@ -295,9 +295,10 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 data += "***CONVERSATION HISTORY***\n\n"
                 data += f.read()
                 data += "\nUser: " + user_message
+                print(data)
                 f.seek(0)
-                if(f.read().count("You: ")>200):
-                    asyncio.create_task(background_group_memory_creation(update, content, user_id))            
+              #  if(f.read().count("You: ")>200):
+                   # asyncio.create_task(background_group_memory_creation(update, content, user_id))            
         return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
