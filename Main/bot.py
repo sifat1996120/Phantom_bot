@@ -283,7 +283,7 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 data += f.read()
                 data += "\n***END OF RULES***\n\n\n"
             data += "***TRAINING DATA***\n"
-            with open("info/group_message_data.txt", "r" , encoding="utf-8") as f:
+            with open("info/Group_message_data.txt", "r" , encoding="utf-8") as f:
                 data += f.read()
                 data += "\n***END OF TRAINING DATA***\n\n\n"
             data += "***MEMORY***\n"
