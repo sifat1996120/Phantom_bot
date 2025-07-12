@@ -246,7 +246,7 @@ async def create_group_memory(api, user_id):
                 system_instruction =  instruction,
             ),
         )
-        with open(f"memory/memory-{user_id}.txt", "a+", encoding="utf-8") as f:
+        with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
             f.write(response.text)
         delete_n_convo(user_id, 100)
     except Exception as e:
@@ -278,27 +278,26 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                     asyncio.create_task(background_memory_creation(update, content, user_id))
         if update.message.chat.type != "private":
             data = "***RULES***\n"
-            with open("info/group-rules.txt", "a+" , encoding="utf-8") as f:
-                f.seek(0)
+            with open("info/group-rules.txt", "r" , encoding="utf-8") as f:
                 data += f.read()
                 data += "\n***END OF RULES***\n\n\n"
-            data += "***TRAINING DATA***\n"
-            with open("info/Group_message_data.txt", "r" , encoding="utf-8") as f:
+            data += "******TRAINING DATA******"
+            with open("info/group_message_data.txt", "r", encoding="utf-8") as f:
                 data += f.read()
-                data += "\n***END OF TRAINING DATA***\n\n\n"
+                data += "******END OF TRAINING DATA******"
             data += "***MEMORY***\n"
             with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
                 data += f.read()
                 data += "\n***END OF MEMORY***\n\n\n"
-            data += "***CONVERSATION HISTORY***\n\n"
-            with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
-                file.seek(0)
-                data += file.read()
+            with open(f"Conversation/conversation-group.txt", "a+", encoding="utf-8") as f:
+                f.seek(0)
+                data += "***CONVERSATION HISTORY***\n\n"
+                data += f.read()
                 data += "\nUser: " + user_message
                 f.seek(0)
                 if(f.read().count("You: ")>200):
-                    asyncio.create_task(background_group_memory_creation(update, content, user_id))
+                    asyncio.create_task(background_group_memory_creation(update, content, user_id))            
         return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
