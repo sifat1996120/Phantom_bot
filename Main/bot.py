@@ -593,6 +593,7 @@ async def echo(update : Update, content : ContextTypes.DEFAULT_TYPE) -> None:
                     print(f"Error getting gemini response for API-{i}. \n Error Code -{e}")
                     await send_to_channel(update, content, channel_id, f"Error getting gemini response for API-{i}\n\nError Code -{e}")
             if response is not None:
+                await send_to_channel(update, content, channel_id, response.usage_metadata)
                 await send_message(update, content, response, user_message, settings)
             else:
                 print("Failed to get a response from gemini.")
