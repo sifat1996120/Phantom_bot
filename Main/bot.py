@@ -221,12 +221,46 @@ async def create_memory(api, user_id):
         print(f"Failed to create memory\n Error code-{e}")
 
 
+async def create_group_memory(api, user_id):
+    try:
+        with open("persona/memory_persona.txt", "r", encoding="utf-8") as f:
+            instruction = f.read()
+        with open(f"memory/memory-group.txt", "a+", encoding = "utf-8") as f:
+            f.seek(0)
+            data = "***PREVIOUS MEMORY***\n\n"
+            data += f.read()
+            data += "\n\n***END OF MEMORY***\n\n"
+        with open(f"Conversation/conversation-group.txt", "a+", encoding = "utf-8") as f:
+            f.seek(0)
+            data += "\n\n***CONVERSATION HISTORY***"
+            data += f.read()
+            data += "\n\n***END OF CONVERSATION***\n\n"
+    
+        client = genai.Client(api_key=api)
+        response = client.models.generate_content(
+            model = "gemini-2.5-flash",
+            contents = data,
+            config = types.GenerateContentConfig(
+                thinking_config = types.ThinkingConfig(thinking_budget=1024),
+                temperature = 0.7,
+                system_instruction =  instruction,
+            ),
+        )
+        with open(f"memory/memory-{user_id}.txt", "a+", encoding="utf-8") as f:
+            f.write(response.text)
+        delete_n_convo(user_id, 100)
+    except Exception as e:
+        print(f"Failed to create memory\n Error code-{e}")
+
+
+
+
 #create the conversation history as prompt
 async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_message, user_id):
     try:
         if update.message.chat.type == "private":
             data = "***RULES***\n"
-            with open("info/Group_message_data.txt", "r" , encoding="utf-8") as f:
+            with open("info/rules.txt", "r" , encoding="utf-8") as f:
                 data += f.read()
                 data += "\n***END OF RULES***\n\n\n"
             data += "***MEMORY***\n"
@@ -248,6 +282,10 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
                 f.seek(0)
                 data += f.read()
                 data += "\n***END OF RULES***\n\n\n"
+            data += "***TRAINING DATA***\n"
+            with open("info/group_message_data.txt", "r" , encoding="utf-8") as f:
+                data += f.read()
+                data += "\n***END OF TRAINING DATA***\n\n\n"
             data += "***MEMORY***\n"
             with open(f"memory/memory-group.txt", "a+", encoding="utf-8") as f:
                 f.seek(0)
@@ -257,7 +295,10 @@ async def create_prompt(update:Update, content:ContextTypes.DEFAULT_TYPE, user_m
             with open("Conversation/conversation-group.txt", "a+", encoding = "utf-8") as file:
                 file.seek(0)
                 data += file.read()
-            data += "\nUser: " + user_message
+                data += "\nUser: " + user_message
+                f.seek(0)
+                if(f.read().count("You: ")>200):
+                    asyncio.create_task(background_group_memory_creation(update, content, user_id))
         return data
     except Exception as e:
         print(f"Error in create_promot function. \n\n Error Code - {e}")
@@ -850,6 +891,19 @@ async def background_memory_creation(update,content,user_id):
     except Exception as e:
         print(f"Error in background_memory_creation function.\n\n Error Code -{e}")
         await send_to_channel(update, content, channel_id, f"Error in background_memory_creation function.\n\n Error Code -{e}")
+
+
+
+async def background_group_memory_creation(update,content,user_id):
+    try:
+        await create_group_memory(load_gemini_api()[-1], user_id)
+        await send_to_channel(update, content, channel_id, f"Created memory for User - {user_id}")
+        with open(f"memory/memory-group.txt", "rb") as file:
+            await content.bot.send_document(chat_id=channel_id, document = file, caption = "Heres the memory file.")
+    except Exception as e:
+        print(f"Error in background_group_memory_creation function.\n\n Error Code -{e}")
+        await send_to_channel(update, content, channel_id, f"Error in background_group_memory_creation function.\n\n Error Code -{e}")
+
 
 
 
