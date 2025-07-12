@@ -177,15 +177,15 @@ def delete_n_convo(user_id, n):
     try:
         if user_id == 100:
             with open("Conversation/conversation-group.txt", "r+") as file:
-                data = f.read()
+                data = file.read()
                 data = data.split("You: ")
                 if len(data) >= n+1:
                     data = data[n:]
-                    f.seek(0)
-                    f.truncate(0)
-                    f.write("You: ".join(data))
+                    file.seek(0)
+                    file.truncate(0)
+                    file.write("You: ".join(data))
             return
-         with open(f"Conversation/conversation-{user_id}.txt", "r+", encoding="utf-8") as f:
+        with open(f"Conversation/conversation-{user_id}.txt", "r+", encoding="utf-8") as f:
             data = f.read()
             data = data.split("You: ")
             if len(data) >= n+1:
